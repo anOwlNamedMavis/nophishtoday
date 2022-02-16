@@ -1,0 +1,18 @@
+@title Avoiding Phishing
+
+Welcome! This tool simulates the experience of recieving phishing messages. It's your job to identify the red flags before the attackers can trick you into handing over your information. To make it a challenge I've thrown in some legitimate messages too.
+
+Background information on each scenario will be written in italics. You can always rely on this information to be true.
+
+*For example, this is what background information will look like.*
+
+The messages you recieve will appear as images, as well as bold text underneath the image. Just like messages you recieve in real life, these may be legitimate or may be trying to trick you.
+
+Click on messages to open them. [Here's an example.](Example)
+
+[Example]:
+
+<img src="resources/images/example.png">
+
+*From Jack:* **For example, this is what a message will look like. **
+
