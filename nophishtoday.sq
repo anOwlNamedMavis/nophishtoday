@@ -1,5 +1,48 @@
 @title Avoiding Phishing
+@start intro
+[[]]:
+    window.story = squiffy.story;
+    
+    // global passage access by mrangel (thank you!)
+    // https://textadventures.co.uk/forum/squiffy/topic/xdyym_5gh0alm2hrdaegyw/a-different-way-to-do-stuff-like-an-inventory-system
+    squiffy.story.passage = function(passageName) {
+        var masterSection = squiffy.story.sections[''];
+        var passage = squiffy.story.section.passages[passageName];
+        if (passage) {
+            // This is the function `setSeen`; which is local so needs to be copied
+            // into this code. I think it might be better to remove this, but it's
+            // in the original code
+            var seenSections = squiffy.get('_seen_sections');
+            if (!seenSections) seenSections = [];
+            if (seenSections.indexOf(passageName) == -1) {
+                seenSections.push(passageName);
+                squiffy.set('_seen_sections', seenSections);
+            }
+        } else if (masterSection && masterSection.passages[passageName]) {
+            passage = masterSection.passages[passageName];
+        } else {
+            return;
+        }
+        var passages = [passage];
+        var masterPassage = masterSection && masterSection.passages[''];
+        if (masterPassage) {
+            passages.push(masterPassage);
+        }
+        var master = squiffy.story.section.passages[''];
+        if (master) {
+            passages.push(master);
+        }
+        $.each(passages, function (i, p) {
+            squiffy.story.run(p);
+        });
+        $.each(passages.reverse(), function (i, p) {
+            squiffy.ui.write(p.text);
+        });
+        squiffy.story.save();
+    };
 
+[[intro]]:
+    
 Welcome! This tool simulates the experience of recieving phishing messages. It's your job to identify the red flags before the attackers can trick you into handing over your information. To make it a challenge I've thrown in some legitimate messages too.
 
 Background information on each scenario will be written in italics. You can always rely on this information to be true.
@@ -11,8 +54,14 @@ The messages you recieve will appear as images, as well as bold text underneath 
 Click on messages to open them. [Here's an example.](Example)
 
 [Example]:
+<img src="resources/images/example.png" alt="Example message" usemap="#example">
+<map name="example">
+    <area shape="rect" coords="30, 60, 191, 341" href="#" title="imessage" alt="imessage" onclick="window.story.passage('inventory');">
+</map>
 
-<img src="resources/images/example.png">
+[inventory]:
+<hr/>
+you made it to the inventory.
 
 *From Jack:* **For example, this is what a message will look like. **
 

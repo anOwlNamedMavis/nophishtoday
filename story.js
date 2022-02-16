@@ -625,14 +625,66 @@ var get = squiffy.get;
 var set = squiffy.set;
 
 
-squiffy.story.start = '_default';
-squiffy.story.id = '15743741bf';
+squiffy.story.start = 'intro';
+squiffy.story.id = '4096840f0b';
 squiffy.story.sections = {
-	'_default': {
+	'': {
+		'text': "",
+		'js': function() {
+			window.story = squiffy.story;
+			
+			// global passage access by mrangel (thank you!)
+			// https://textadventures.co.uk/forum/squiffy/topic/xdyym_5gh0alm2hrdaegyw/a-different-way-to-do-stuff-like-an-inventory-system
+			squiffy.story.passage = function(passageName) {
+			    var masterSection = squiffy.story.sections[''];
+			    var passage = squiffy.story.section.passages[passageName];
+			    if (passage) {
+			        // This is the function `setSeen`; which is local so needs to be copied
+			        // into this code. I think it might be better to remove this, but it's
+			        // in the original code
+			        var seenSections = squiffy.get('_seen_sections');
+			        if (!seenSections) seenSections = [];
+			        if (seenSections.indexOf(passageName) == -1) {
+			            seenSections.push(passageName);
+			            squiffy.set('_seen_sections', seenSections);
+			        }
+			    } else if (masterSection && masterSection.passages[passageName]) {
+			        passage = masterSection.passages[passageName];
+			    } else {
+			        return;
+			    }
+			    var passages = [passage];
+			    var masterPassage = masterSection && masterSection.passages[''];
+			    if (masterPassage) {
+			        passages.push(masterPassage);
+			    }
+			    var master = squiffy.story.section.passages[''];
+			    if (master) {
+			        passages.push(master);
+			    }
+			    $.each(passages, function (i, p) {
+			        squiffy.story.run(p);
+			    });
+			    $.each(passages.reverse(), function (i, p) {
+			        squiffy.ui.write(p.text);
+			    });
+			    squiffy.story.save();
+			};
+		},
+		'passages': {
+		},
+	},
+	'intro': {
 		'text': "<p>Welcome! This tool simulates the experience of recieving phishing messages. It&#39;s your job to identify the red flags before the attackers can trick you into handing over your information. To make it a challenge I&#39;ve thrown in some legitimate messages too.</p>\n<p>Background information on each scenario will be written in italics. You can always rely on this information to be true.</p>\n<p><em>For example, this is what background information will look like.</em></p>\n<p>The messages you recieve will appear as images, as well as bold text underneath the image. Just like messages you recieve in real life, these may be legitimate or may be trying to trick you.</p>\n<p>Click on messages to open them. <a class=\"squiffy-link link-passage\" data-passage=\"Example\" role=\"link\" tabindex=\"0\">Here&#39;s an example.</a></p>",
+		'js': function() {
+			
+		},
 		'passages': {
 			'Example': {
-				'text': "<p>&lt;</p>\n<p><em>From Jack:</em> <strong>For example, this is what a message will look like. </strong></p>",
+				'text': "<p>window.story = squiffy.story;\n<img src=\"resources/images/example.png\" alt=\"Example message\" usemap=\"#example\"></p>\n<map name=\"example\">\n    <area shape=\"rect\" coords=\"30, 60, 191, 341\" href=\"#\" title=\"imessage\" alt=\"imessage\" onclick=\"window.story.passage('inventory');\">\n</map>",
+			},
+			'inventory': {
+				'text': "<p><hr/>\nyou made it to the inventory.</p>\n<p><em>From Jack:</em> <strong>For example, this is what a message will look like. </strong></p>",
 			},
 		},
 	},
