@@ -635,6 +635,7 @@ squiffy.story.sections = {
 			
 			// global passage access by mrangel (thank you!)
 			// https://textadventures.co.uk/forum/squiffy/topic/xdyym_5gh0alm2hrdaegyw/a-different-way-to-do-stuff-like-an-inventory-system
+			
 			squiffy.story.passage = function(passageName) {
 			    var masterSection = squiffy.story.sections[''];
 			    var passage = squiffy.story.section.passages[passageName];
@@ -681,10 +682,24 @@ squiffy.story.sections = {
 		},
 		'passages': {
 			'Example': {
-				'text': "<p>window.story = squiffy.story;\n<img src=\"resources/images/example.png\" alt=\"Example message\" usemap=\"#example\"></p>\n<map name=\"example\">\n    <area shape=\"rect\" coords=\"30, 60, 191, 341\" href=\"#\" title=\"imessage\" alt=\"imessage\" onclick=\"window.story.passage('inventory');\">\n</map>",
+				'text': "<p><img src=\"resources/images/example.png\" alt=\"Example message\" usemap=\"#example\"></p>\n<map name=\"example\">\n    <area shape=\"rect\" coords=\"134, 335, 192, 398\" href=\"#\" title=\"saf\" alt=\"\" onclick=\"window.story.passage('passage test 1');\">\n    <area shape=\"rect\" coords=\"193, 337, 262, 399\" href=\"#\" title=\"mail\" alt=\"\" onclick=\"window.story.go('section test 1');\">\n    <area shape=\"rect\" coords=\"12, 15, 67, 71\" href=\"#\" title=\"facetime\" alt=\"\" onclick=\"window.story.passage('passage test 1');\">\n    <area shape=\"rect\" coords=\"4, 335, 71, 400\" href=\"#\" title=\"phone\" alt=\"\" onclick=\"window.story.passage('passage test 2');\">\n    <area shape=\"rect\" coords=\"71, 336, 132, 399\" href=\"#\" title=\"messages\" alt=\"\" onclick=\"window.story.go('section test 2');\">\n</map>",
 			},
-			'inventory': {
-				'text': "<p><hr/>\nyou made it to the inventory.</p>\n<p><em>From Jack:</em> <strong>For example, this is what a message will look like. </strong></p>",
+			'passage test 1': {
+				'text': "<p>This is the first passage test</p>",
+			},
+		},
+	},
+	'section test 1': {
+		'text': "<p>This is the first section test</p>",
+		'passages': {
+		},
+	},
+	'section test 2': {
+		'clear': true,
+		'text': "<p>This is the second section test</p>\n<p><img src=\"resources/images/example2.png\" alt=\"Example 2\" usemap=\"#example\"></p>",
+		'passages': {
+			'passage test 2': {
+				'text': "<p>This is the second passage test\n<img src=\"resources/images/example2.png\" alt=\"Example 2\" usemap=\"#example\"></p>",
 			},
 		},
 	},

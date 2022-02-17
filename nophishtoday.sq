@@ -5,6 +5,7 @@
     
     // global passage access by mrangel (thank you!)
     // https://textadventures.co.uk/forum/squiffy/topic/xdyym_5gh0alm2hrdaegyw/a-different-way-to-do-stuff-like-an-inventory-system
+    
     squiffy.story.passage = function(passageName) {
         var masterSection = squiffy.story.sections[''];
         var passage = squiffy.story.section.passages[passageName];
@@ -56,12 +57,25 @@ Click on messages to open them. [Here's an example.](Example)
 [Example]:
 <img src="resources/images/example.png" alt="Example message" usemap="#example">
 <map name="example">
-    <area shape="rect" coords="30, 60, 191, 341" href="#" title="imessage" alt="imessage" onclick="window.story.passage('inventory');">
+    <area shape="rect" coords="134, 335, 192, 398" href="#" title="saf" alt="" onclick="window.story.passage('passage test 1');">
+    <area shape="rect" coords="193, 337, 262, 399" href="#" title="mail" alt="" onclick="window.story.go('section test 1');">
+    <area shape="rect" coords="12, 15, 67, 71" href="#" title="facetime" alt="" onclick="window.story.passage('passage test 1');">
+    <area shape="rect" coords="4, 335, 71, 400" href="#" title="phone" alt="" onclick="window.story.passage('passage test 2');">
+    <area shape="rect" coords="71, 336, 132, 399" href="#" title="messages" alt="" onclick="window.story.go('section test 2');">
 </map>
 
-[inventory]:
-<hr/>
-you made it to the inventory.
+[passage test 1]:
+This is the first passage test
 
-*From Jack:* **For example, this is what a message will look like. **
+[[section test 1]]:
+This is the first section test
 
+[[section test 2]]:
+@clear
+This is the second section test
+
+<img src="resources/images/example2.png" alt="Example 2" usemap="#example">
+
+[passage test 2]:
+This is the second passage test
+<img src="resources/images/example2.png" alt="Example 2" usemap="#example">
