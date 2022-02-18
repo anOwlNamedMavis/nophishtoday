@@ -1,0 +1,65 @@
+home
+  messages
+    message history
+	multiple contacts
+  phone
+    contacts
+	dial
+	call screen
+	call history
+	answering prompt
+  browser
+    search
+	various webpages
+	history
+	bookmarks
+	address bar
+  email
+    message history
+	multiple contacts
+	spam
+	sent
+	inbox
+	compose
+  facebook
+    feed
+	profiles
+	posts
+	comments
+	
+  app store
+    search
+	downloads
+	app page
+	
+  settings
+  camera
+    take photo
+	view camera roll
+  paypal
+    send money
+	view balance
+	
+  ebay
+    listings
+	search
+	purchase
+	
+  amazon
+    listings
+	search
+	purchase
+  bank
+    send money
+	view balance
+  ID
+    
+  General
+    Screenshot
+	Notifications
+	
+  
+  clock
+  calculator
+  calendar
+  
